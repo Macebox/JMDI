@@ -8,11 +8,11 @@ Installation and Usage
 
 This jQuery plugin has been tested with v1.10.2 of jQuery.
 
-# # # Usage
+### Usage
 
-# # # # Simple example
+#### Simple example
 
-First the file example.html:
+First create a file named `example.html`:
 ```html
 <!doctype html>
 <html lang='en' class='no-js'>
@@ -32,7 +32,7 @@ First the file example.html:
 </html>
 ```
 
-And then in the file example.js:
+And then create the file `example.js`:
 ```javascript
 $(document).ready(function(){
 	'use strict';
@@ -40,3 +40,5 @@ $(document).ready(function(){
 	$('#interface').JMDI();
 });
 ```
+
+The script takes the `interface` div and turns it into a MDI.
