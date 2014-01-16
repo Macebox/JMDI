@@ -9,7 +9,7 @@ Installation and Usage
 This jQuery plugin has been tested with v1.10.2 of jQuery.
 
 ### Installation
-To install, just pull the repository to your server.
+To install, just fetch the repository.
 
 The JMDI plugin mainly consists of 3 files which are needed:
 * `JMDI.js` - The JavaScript file containing the plugin.
@@ -61,15 +61,15 @@ To input parameters to JMDI just use the following:
 ```
 
 The following parameters are supported:
-*  width - The width of the interface in pixels.
-*  height - The height of the interface in pixels.
-*  prependId - The suffix to use for all element id's, to make them unique.
-*  defaultWindowPosX - The default upper left corner x position for new windows.
-*  defaultWindowPosY - The default upper left corner y position for new windows.
-*  defaultWindowHeight - The default height for new windows.
-*  defaultWindowWidth - The default width for new windows.
-*  windowtypes - "Map" of window name -> window creation function.
-*  showDefaultWindowType - Set to true if the default Textfile option should be available in New... .
+*  `width` - The width of the interface in pixels.
+*  `height` - The height of the interface in pixels.
+*  `prependId` - The suffix to use for all element id's, to make them unique.
+*  `defaultWindowPosX` - The default upper left corner x position for new windows.
+*  `defaultWindowPosY` - The default upper left corner y position for new windows.
+*  `defaultWindowHeight` - The default height for new windows.
+*  `defaultWindowWidth` - The default width for new windows.
+*  `windowtypes` - "Map" of window name -> window creation function.
+*  `showDefaultWindowType` - Set to true if the default Textfile option should be available in New... .
 
 #### Example with another type of window
 
