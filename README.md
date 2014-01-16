@@ -3,17 +3,20 @@ JMDI
 
 A Multiple Document Interface jQuery plugin for JavaScript.
 
-Usage
------
+Installation and Usage
+----------------------
 
 This jQuery plugin has been tested with v1.10.2 of jQuery.
 
-### Usage
+### Installation
+To install, just pull the repository to your server.
 
-The JMDI plugin mainly consists of 3 files:
-`JMDI.js` - The JavaScript file containing the plugin.
-`JMDI.css` - The stylesheet for the MDI.
-`getfile.php` - The PHP script that creates the files that gets saved from the basic Textfile windows.
+The JMDI plugin mainly consists of 3 files which are needed:
+* `JMDI.js` - The JavaScript file containing the plugin.
+* `JMDI.css` - The stylesheet for the MDI.
+* `getfile.php`(optional) - The PHP script that creates the files that gets saved from the basic Textfile windows.
+
+### Usage
 
 #### Simple example
 This example shows how to initialize the JMDI, which is able to create windows with text writers which can be saved to disk.
