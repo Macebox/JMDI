@@ -1,0 +1,78 @@
+.interface { background-color: white; border: 1px solid #DDD; }
+
+.taskbar { background-color: #DDD; height: 22px; width: 100%; }
+
+.clientArea { position: relative; }
+
+.window { border: 1px solid #999; position: absolute; background: white; }
+
+.windowbar { background-color: #DDD; border-bottom: 1px solid #999; height: 20px; }
+
+.windowTitle { margin-left: 10px; }
+
+.minmaxbutton { margin-right: 10px; float: right; text-decoration: none; }
+
+.closebutton { margin-right: 5px; float: right; text-decoration: none; }
+
+nav.taskbar ul {
+	background-color: #DDD;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	position: relative;
+	display: inline-table;
+}
+
+nav.taskbar ul:after {
+	content: ""; clear: both; display: block;
+}
+
+nav.taskbar ul:hover { background-color: #AAA; }
+
+nav.taskbar ul ul {
+	display: none;
+}
+
+nav.taskbar ul li:hover > ul {
+	display: block;
+	background-color: #AAA;
+	z-index: 999;
+}
+
+nav.taskbar ul li {
+	float: left;
+}
+nav.taskbar ul li:hover {
+	background-color: #AAA;
+}
+
+nav.taskbar ul li:hover a {
+	color: #fff;
+}
+
+nav.taskbar ul li a {
+	display: block; padding: 0px 40px;
+	color: #757575; text-decoration: none;
+}
+
+nav.taskbar ul ul {
+	background: #5f6975;
+	border-radius: 0px;
+	padding: 0;
+	position: absolute;
+	top: 100%;
+	left: 0;
+}
+nav.taskbar ul ul li {
+	float: none; 
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+	position: relative;
+}
+nav.taskbar ul ul li a {
+	padding: 0px 20px;
+	color: #fff;
+}	
+nav.taskbar ul ul li a:hover {
+	background: #CCC;
+}
