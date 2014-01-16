@@ -1,4 +1,31 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: C:/wamp/www/javascript/kmom10/JMDI/git/JMDI.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: C:/wamp/www/javascript/kmom10/JMDI/git/JMDI.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * See (@link {http://jquery.com/|jQuery API}).
  * @name jQuery
  * @class
@@ -158,7 +185,7 @@
 				if (!f) {
 					windowOrder.splice(this.z, 1);
 			
-					for (var i=0; i < windowOrder.length; i++) {
+					for (var i=0; i &lt; windowOrder.length; i++) {
 						windowOrder[i].window.css('z-index', i+1);
 						windowOrder[i].z = i;
 					}
@@ -231,7 +258,7 @@
 				windowOrder.splice(this.z, 1);
 				windowOrder.push(this);
 				
-				for (var i=0; i < windowOrder.length; i++) {
+				for (var i=0; i &lt; windowOrder.length; i++) {
 					windowOrder[i].window.css('z-index', i+1);
 					windowOrder[i].z = i;
 				}
@@ -272,7 +299,7 @@
 			windows[winId] = window;
 			windowOrder.push(window);
 			
-			window.window = $('<div>')
+			window.window = $('&lt;div>')
 				.addClass('window')
 				.width(window.w)
 				.height(window.h)
@@ -287,8 +314,8 @@
 				win.sendToForeground();
 			});
 			
-			window.addElement('<div>', 'titlebar')
-				.append($('<span>')
+			window.addElement('&lt;div>', 'titlebar')
+				.append($('&lt;span>')
 					.addClass('windowTitle')
 					.append(winId)
 				).addClass('windowbar')
@@ -310,7 +337,7 @@
 					var relY = event.pageY - parentOffset.top;
 					
 					clickedWindow = false;
-				}).append($('<a>')
+				}).append($('&lt;a>')
 					.append('x')
 					.attr('href', '#')
 					.addClass('closebutton')
@@ -319,7 +346,7 @@
 						var win = windows[$(this).parent().parent().attr('id')];
 						win.close();
 					})
-				).append($('<a>')
+				).append($('&lt;a>')
 					.append('-')
 					.attr('href', '#')
 					.addClass('minmaxbutton')
@@ -349,7 +376,7 @@
 					var filename=prompt("What would you like to save the file as?","default.txt")
 					
 					if (filename != null) {
-						var form = $('<form>').appendTo($('body'));
+						var form = $('&lt;form>').appendTo($('body'));
 						
 						form.attr({
 							'id': 'save_form',
@@ -358,7 +385,7 @@
 							'target': '_blank'
 						});
 						
-						form.append($('<input>')
+						form.append($('&lt;input>')
 							.attr({
 								'name': 'data',
 								'type': 'hidden',
@@ -373,7 +400,7 @@
 				}
 			}
 			
-			window.addElement('<textarea>', 'text')
+			window.addElement('&lt;textarea>', 'text')
 				.css({
 					'width': window.w - 10,
 					'height': window.h - 57,
@@ -381,7 +408,7 @@
 				}
 			);
 			
-			window.addElement('<button>')
+			window.addElement('&lt;button>')
 				.append('Save')
 				.click(function() {
 					onSave();
@@ -413,9 +440,9 @@
 				'height': options.height
 			});
 			
-			var menu = $('<nav></nav>').addClass('menu').appendTo(interf);
+			var menu = $('&lt;nav>&lt;/nav>').addClass('menu').appendTo(interf);
 			
-			clientArea = $('<div></div>').addClass('clientArea')
+			clientArea = $('&lt;div>&lt;/div>').addClass('clientArea')
 				.width(options.width)
 				.height(options.height - menu.height())
 				.mouseout(function (event) {
@@ -428,14 +455,14 @@
 						var nLeft = win.window.position().left + (relX - win.lastX);
 						var nTop = win.window.position().top + (relY - win.lastY);
 						
-						if (nLeft < 0 || nLeft + win.w > $(this).width() || nTop < 0 ||nTop + win.h > $(this).height()) {
-							if (nLeft < 0) {
+						if (nLeft &lt; 0 || nLeft + win.w > $(this).width() || nTop &lt; 0 ||nTop + win.h > $(this).height()) {
+							if (nLeft &lt; 0) {
 								nLeft = 0;
 							} else if (nLeft + win.outerWidth(true) > $(this).width()) {
 								nLeft = $(this).width() - win.outerWidth(true);
 							}
 							
-							if (nTop < 0) {
+							if (nTop &lt; 0) {
 								nTop = 0;
 							} else if (nTop + win.outerHeight(true) > $(this).height()) {
 								nTop = $(this).height() - win.outerHeight(true);
@@ -461,13 +488,13 @@
 						var nLeft = win.window.position().left + (relX - win.lastX);
 						var nTop = win.window.position().top + (relY - win.lastY);
 						
-						if (nLeft < 0) {
+						if (nLeft &lt; 0) {
 							nLeft = 0;
 						} else if (nLeft + win.outerWidth(true) > $(this).width()) {
 							nLeft = $(this).width() - win.outerWidth(true);
 						}
 						
-						if (nTop < 0) {
+						if (nTop &lt; 0) {
 							nTop = 0;
 						} else if (nTop + win.outerHeight(true) > $(this).height()) {
 							nTop = $(this).height() - win.outerHeight(true);
@@ -486,17 +513,17 @@
 					}
 			}).appendTo(interf);
 			
-			var menuItems = $('<ul></ul>');
+			var menuItems = $('&lt;ul>&lt;/ul>');
 			
-			var menuItem = $('<li></li>').append(
-				$('<a>New...</a>')
+			var menuItem = $('&lt;li>&lt;/li>').append(
+				$('&lt;a>New...&lt;/a>')
 					.attr('href', '#')
 			).appendTo(menuItems);
 			
-			var filelist = $('<ul></ul>').appendTo(menuItem);
+			var filelist = $('&lt;ul>&lt;/ul>').appendTo(menuItem);
 			
-			$('<li></li>').append(
-				$('<a>Textfile</a>')
+			$('&lt;li>&lt;/li>').append(
+				$('&lt;a>Textfile&lt;/a>')
 					.attr('href', '#')
 					.click(function() {
 						createWindow(createTextEdit);
@@ -505,8 +532,8 @@
 			
 			for (var key in options.windowtypes) {
 				if (options.windowtypes.hasOwnProperty(key)) {
-					$('<li></li>').append(
-						$('<a>'+key+'</a>')
+					$('&lt;li>&lt;/li>').append(
+						$('&lt;a>'+key+'&lt;/a>')
 							.attr('href', '#')
 							.click(function() {
 								createWindow(options.windowtypes[key]);
@@ -537,4 +564,26 @@
 		'windowtypes': {},
 		'showDefaultWindowType': true
 	}
-}) (jQuery);
+}) (jQuery);</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="$.fn.JMDI-MDIWindow.html">MDIWindow</a></li><li><a href="jQuery.html">jQuery</a></li><li><a href="jQuery.fn.html">fn</a></li><li><a href="jQuery.fn.JMDI.html">JMDI</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha3</a> on Thu Jan 16 2014 23:49:53 GMT+0100 (Västeuropa, normaltid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

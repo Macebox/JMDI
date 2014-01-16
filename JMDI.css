@@ -1,6 +1,6 @@
 .interface { background-color: white; border: 1px solid #DDD; }
 
-.taskbar { background-color: #DDD; height: 22px; width: 100%; }
+.menu { background-color: #DDD; height: 22px; width: 100%; }
 
 .clientArea { position: relative; }
 
@@ -14,7 +14,7 @@
 
 .closebutton { margin-right: 5px; float: right; text-decoration: none; }
 
-nav.taskbar ul {
+nav.menu ul {
 	background-color: #DDD;
 	padding: 0;
 	margin: 0;
@@ -23,39 +23,39 @@ nav.taskbar ul {
 	display: inline-table;
 }
 
-nav.taskbar ul:after {
+nav.menu ul:after {
 	content: ""; clear: both; display: block;
 }
 
-nav.taskbar ul:hover { background-color: #AAA; }
+nav.menu ul:hover { background-color: #AAA; }
 
-nav.taskbar ul ul {
+nav.menu ul ul {
 	display: none;
 }
 
-nav.taskbar ul li:hover > ul {
+nav.menu ul li:hover > ul {
 	display: block;
 	background-color: #AAA;
 	z-index: 999;
 }
 
-nav.taskbar ul li {
+nav.menu ul li {
 	float: left;
 }
-nav.taskbar ul li:hover {
+nav.menu ul li:hover {
 	background-color: #AAA;
 }
 
-nav.taskbar ul li:hover a {
+nav.menu ul li:hover a {
 	color: #fff;
 }
 
-nav.taskbar ul li a {
+nav.menu ul li a {
 	display: block; padding: 0px 40px;
 	color: #757575; text-decoration: none;
 }
 
-nav.taskbar ul ul {
+nav.menu ul ul {
 	background: #5f6975;
 	border-radius: 0px;
 	padding: 0;
@@ -63,16 +63,16 @@ nav.taskbar ul ul {
 	top: 100%;
 	left: 0;
 }
-nav.taskbar ul ul li {
+nav.menu ul ul li {
 	float: none; 
 	border-top: 1px solid #999;
 	border-bottom: 1px solid #999;
 	position: relative;
 }
-nav.taskbar ul ul li a {
+nav.menu ul ul li a {
 	padding: 0px 20px;
 	color: #fff;
 }	
-nav.taskbar ul ul li a:hover {
+nav.menu ul ul li a:hover {
 	background: #CCC;
 }

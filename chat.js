@@ -3,104 +3,123 @@
  */
 $(document).ready(function(){
   'use strict';
-  
-	function createChatWindow(window) {
-		window.width(400);
-		window.height(200);
+	function ChatSocket(server, output) {
+		this.server = server;
+		this.websocket = null;
 		
-		var websocket;
+		this.output = output;
+	}
 	
-		function log(msg) {
+	ChatSocket.prototype = {
+		log: function(msg) {
 			console.log(msg);
-			$('#window-' + window.id + '-output').append('[' + new Date().toLocaleTimeString() + '] ' + msg + '<br>').scrollTop($('#window-' + window.id + '-output')[0].scrollHeight);
-		}
+			this.output.append('[' + new Date().toLocaleTimeString() + '] ' + msg + '<br>').scrollTop(this.output[0].scrollHeight);
+		},
 		
-		function handleMessage(message) {
+		handleMessage: function(message) {
 			var msg = message.substr(1), params;
 		
 			params = msg.split(' ');
 			
 			if (params[0] == 'addchannel') {
-				// Write channel name
+				this.log('* Channel ' + params[1] + ' added!');
 			} else if (params[0] == 'removechannel') {
-				$('#channel-' + params[1]).remove();
+				this.log('* Channel ' + params[1] + ' removed!');
 			}
-		}
+		},
 		
-		function connect() {
-			log('Connecting to: ws://www.chuckserver.se:1338');
-			websocket = new WebSocket('ws://www.chuckserver.se:1338', 'chat-protocol');
+		connect: function() {
+			var t = this;
+			this.log('Connecting to: ' + this.server);
+			this.websocket = new WebSocket(this.server, 'chat-protocol');
 		 
-			websocket.onopen = function() {
-				log('The websocket is now open.');
-			}
+			this.websocket.onopen = function() {
+				t.log('The websocket is now open.');
+			};
 		 
-			websocket.onmessage = function(event) {
+			this.websocket.onmessage = function(event) {
 				if (event.data.charAt(0) == '/') {
-					handleMessage(event.data);
+					t.handleMessage(event.data);
 				} else {
-					log(event.data);
+					t.log(event.data);
 				}
-			}
+			};
 		 
-			websocket.onclose = function() {
-				log('The websocket is now closed.');
-				$('#channels').empty();
-			}
-		}
+			this.websocket.onclose = function() {
+				t.log('The websocket is now closed.');
+			};
+		},
 		
-		$('<div><div>')
-			.attr('id', 'window-'+ window.id + '-output')
+		close: function() {
+			if (!this.websocket || this.websocket.readystate === 3) {
+			this.log('The websocket is not connected to a server.');
+			} else {
+				this.log('Closing websocket');
+				this.websocket.close();
+				this.websocket = false;
+			}
+		},
+		
+		sendMessage: function(message) {
+			var ret = false;
+			if(!this.websocket || this.websocket.readyState === 3) {
+					this.log('The websocket is not connected to a server.');
+			} else {
+				if (message == '/help') {
+					this.log('Different commands: <br>* /name (name) - rename yourself<br>* /channel (channel) - change channel<br>* /me (action) - try it<br>* /w (user) (message) - Whisper to a user');
+				} else {
+					this.websocket.send(message);
+				}
+				ret = true;
+			}
+			
+			return ret;
+		}
+	}
+  
+	function createChatWindow(window) {
+		window.width(400);
+		window.height(200);
+		
+		var chatsocket;
+		
+		window.addElement('<div>', 'output')
 			.css('overflow', 'scroll')
 			.height(window.getClientArea().h - 30)
-			.width(window.w)
-			.appendTo(window.window);
-		
-		$('<input>')
-			.attr('id', 'window-' + window.id + '-message')
+			.width(window.w);
+			
+		window.addElement('<input>', 'message')
 			.attr('placeholder', 'Message...')
-			.width(200)
-			.appendTo(window.window);
-		
-		$('<button>')
-			.attr('id', 'window-' + window.id + '-send')
+			.width(200);
+			
+		window.addElement('<button>', 'send')
 			.append('Send')
-			.appendTo(window.window)
 			.click(function () {
-				if(!websocket || websocket.readyState === 3) {
-					log('The websocket is not connected to a server.');
-				} else {
-					if ($('#window-' + window.id + '-message').val() == '/help') {
-						log('Different commands: <br>* /name (name) - rename yourself<br>* /channel (channel) - change channel<br>* /me (action) - try it<br>* /w (user) (message) - Whisper to a user');
-					} else {
-						websocket.send($('#window-' + window.id + '-message').val());
-					}
-					$('#window-' + window.id + '-message').val('')
+				if (chatsocket.sendMessage(window.getElement('message').val())) {
+					window.getElement('message').val('');
 				}
-			});
-		connect();
+			}
+		);
+		
+		chatsocket = new ChatSocket('ws://www.chuckserver.se:1338', window.getElement('output'));
+		
+		chatsocket.connect();
 		
 		window.close(function() {
-			if (!websocket || websocket.readystate === 3) {
-			log('The websocket is not connected to a server.');
-			} else {
-				log('Closing websocket');
-				websocket.close();
-				websocket = false;
-			}
+			chatsocket.close();
 		});
 		
 		window.resize(function() {
 			console.log('Chat resize');
-			$('#window-' + window.id + '-output')
+			window.getElement('output')
 				.height(window.getClientArea().h - 30)
 				.width(window.getClientArea().w);
-			$('#window-' + window.id + '-message')
-				.width(window.getClientArea().w - $('#window-' + window.id + '-send').outerWidth(true) - 10)
+			window.getElement('message')
+				.width(window.getClientArea().w - window.getElement('send').outerWidth(true) - 10)
 		});
 	}
 	
-	$('#interface').MDI({
+	$('#interface').JMDI({
 		'windowtypes': {'chat': createChatWindow},
 	});
 });
