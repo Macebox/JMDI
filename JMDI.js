@@ -210,6 +210,7 @@
 			/**
 			 * Adds an jQuery element with a generated id based on the provided id, appends it to the window and the returns the object created.
 			 * This element can be retrieved by using the function getElement(id).
+			 * @param {String} tag - A standard jQuery tag (e.g. <div>).
 			 * @param {*} id - The provided id.
 			 */
 			addElement: function(tag, id) {
